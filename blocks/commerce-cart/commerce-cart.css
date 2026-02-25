@@ -1,3 +1,6 @@
+/* Import cart shipments styles */
+@import url('../../scripts/components/cart-shipments/cart-shipments.css');
+
 .commerce-cart {
   padding: var(--spacing-large) 0;
   position: relative;

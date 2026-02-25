@@ -1,0 +1,262 @@
+/**
+ * Cart Shipments Styles
+ * Styles for multi-shipment cart display with delivery options
+ */
+
+/* Shipments Container */
+.shipments-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-large, 24px);
+}
+
+/* Individual Shipment Container */
+.shipment-container {
+  border: 1px solid var(--color-neutral-300, #e0e0e0);
+  border-radius: var(--shape-border-radius-2, 8px);
+  background: var(--color-neutral-50, #fafafa);
+  overflow: hidden;
+}
+
+/* Shipment Header */
+.shipment-header {
+  padding: var(--spacing-medium, 16px) var(--spacing-large, 24px);
+  border-bottom: 1px solid var(--color-neutral-300, #e0e0e0);
+  background: var(--color-neutral-100, #fff);
+}
+
+.shipment-header__title {
+  font: var(--type-headline-2-font, 600 1.25rem/1.4 sans-serif);
+  letter-spacing: var(--type-headline-2-letter-spacing, 0);
+  margin: 0 0 var(--spacing-xxsmall, 4px) 0;
+  color: var(--color-neutral-900, #1a1a1a);
+}
+
+.shipment-header__subtitle {
+  font: var(--type-body-2-default-font, 400 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-700, #666);
+}
+
+/* Shipment Content - Grid Layout */
+.shipment-content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-medium, 16px);
+  padding: var(--spacing-medium, 16px);
+}
+
+@media (min-width: 768px) {
+  .shipment-content {
+    grid-template-columns: 1fr 280px;
+    gap: var(--spacing-large, 24px);
+    padding: var(--spacing-large, 24px);
+  }
+}
+
+/* Items Section */
+.shipment-items {
+  min-width: 0;
+}
+
+/* Items Table Header */
+.shipment-items__header {
+  display: none;
+  grid-template-columns: 3fr 1fr 80px 1fr;
+  gap: var(--spacing-small, 8px);
+  padding: var(--spacing-small, 8px) 0;
+  border-bottom: 1px solid var(--color-neutral-300, #e0e0e0);
+  font: var(--type-body-2-strong-font, 600 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-700, #666);
+}
+
+@media (min-width: 768px) {
+  .shipment-items__header {
+    display: grid;
+  }
+}
+
+.shipment-items__header-cell {
+  padding: var(--spacing-xsmall, 8px);
+}
+
+.shipment-items__header-cell--price,
+.shipment-items__header-cell--qty,
+.shipment-items__header-cell--subtotal {
+  text-align: right;
+}
+
+/* Items List */
+.shipment-items__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Individual Item Wrapper */
+.shipment-item-wrapper {
+  border-bottom: 1px solid var(--color-neutral-200, #eee);
+  padding: var(--spacing-small, 8px) 0;
+}
+
+.shipment-item-wrapper:last-child {
+  border-bottom: none;
+}
+
+/* Override dropin cart item styles within shipment */
+.shipment-item-wrapper .dropin-cart-item {
+  padding: var(--spacing-small, 8px);
+}
+
+/* For split items, hide any dropin price elements that aren't the unit price
+   We replace the totals with our calculated source-specific subtotals */
+.shipment-item-wrapper .dropin-cart-item__price--discountedTotal {
+  display: none !important;
+}
+
+/* Delivery Options Section */
+.shipment-delivery-options {
+  background: var(--color-brand-50, #f5f8ff);
+  border: 1px solid var(--color-brand-200, #c5d9ff);
+  border-radius: var(--shape-border-radius-1, 4px);
+  padding: var(--spacing-medium, 16px);
+  height: fit-content;
+}
+
+.shipment-delivery-options__heading {
+  font: var(--type-body-1-strong-font, 600 1rem/1.5 sans-serif);
+  color: var(--color-neutral-900, #1a1a1a);
+  margin-bottom: var(--spacing-small, 8px);
+  padding-bottom: var(--spacing-xsmall, 8px);
+  border-bottom: 1px solid var(--color-brand-200, #c5d9ff);
+}
+
+.shipment-delivery-options__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-small, 8px);
+}
+
+.shipment-delivery-options__label {
+  font: var(--type-body-2-default-font, 400 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-700, #666);
+  margin-bottom: var(--spacing-xsmall, 4px);
+}
+
+/* Individual Delivery Option */
+.shipment-delivery-option {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-xsmall, 8px);
+  padding: var(--spacing-xsmall, 8px);
+  border-radius: var(--shape-border-radius-1, 4px);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.shipment-delivery-option:hover {
+  background: var(--color-brand-100, #e6efff);
+}
+
+.shipment-delivery-option input[type="radio"] {
+  margin-top: 3px;
+  accent-color: var(--color-brand-700, #0055ff);
+  cursor: pointer;
+}
+
+.shipment-delivery-option label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  cursor: pointer;
+  flex: 1;
+}
+
+.shipment-delivery-option__date {
+  font: var(--type-body-2-default-font, 400 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-900, #1a1a1a);
+}
+
+.shipment-delivery-option__price {
+  font: var(--type-body-2-strong-font, 600 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-900, #1a1a1a);
+}
+
+/* Selected delivery option styling */
+.shipment-delivery-option:has(input:checked) {
+  background: var(--color-brand-100, #e6efff);
+}
+
+/* Move to Wishlist and other item actions */
+.shipment-item-wrapper .dropin-cart-item__footer {
+  margin-top: var(--spacing-xsmall, 8px);
+}
+
+/* Split item quantity note (e.g., "1 (of 26)") */
+.shipment-item-split-note {
+  display: inline-block;
+  margin-left: var(--spacing-xxsmall, 4px);
+  font: var(--type-body-2-default-font, 400 0.75rem/1.5 sans-serif);
+  color: var(--color-neutral-600, #888);
+}
+
+/* Split item price display - inline: <s>$884.00</s> $778.70 */
+.shipment-item-price-original {
+  color: var(--color-neutral-500, #999);
+  font-size: 0.875em;
+}
+
+.shipment-item-price-adjusted {
+  color: var(--color-neutral-900, #1a1a1a);
+  font-weight: 600;
+}
+
+/* Sale price in red (matches dropin's sale styling) */
+.shipment-item-price-sale {
+  color: var(--color-alert-800, #c00);
+  font-weight: 600;
+}
+
+/* Delivery option label with method and price */
+.shipment-delivery-option__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: var(--spacing-small, 8px);
+}
+
+.shipment-delivery-option__method {
+  font: var(--type-body-2-default-font, 400 0.875rem/1.5 sans-serif);
+  color: var(--color-neutral-900, #1a1a1a);
+}
+
+.shipment-delivery-options__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxsmall, 4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+  .shipment-container {
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+  }
+
+  .shipment-header {
+    padding: var(--spacing-small, 12px) var(--spacing-medium, 16px);
+  }
+
+  .shipment-content {
+    padding: var(--spacing-small, 12px);
+  }
+
+  .shipment-delivery-options {
+    margin-top: var(--spacing-small, 8px);
+  }
+}
+
+/* Hide original cart list heading when using shipments */
+.cart__list .cart-cart-summary-list__heading {
+  display: none;
+}
