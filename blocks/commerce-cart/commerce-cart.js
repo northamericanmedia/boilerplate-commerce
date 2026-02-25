@@ -30,6 +30,9 @@ import { publishShoppingCartViewEvent } from '@dropins/storefront-cart/api.js';
 import createMiniPDP from '../../scripts/components/commerce-mini-pdp/commerce-mini-pdp.js';
 import createModal from '../modal/modal.js';
 
+// Cart Shipments (Multi-Source Inventory)
+import { initCartShipments } from '../../scripts/components/cart-shipments/cart-shipments.js';
+
 // Initializers
 import '../../scripts/initializers/cart.js';
 import '../../scripts/initializers/wishlist.js';
@@ -385,6 +388,9 @@ export default async function decorate(block) {
       },
     })($giftOptions),
   ]);
+
+  // Initialize cart shipments (Multi-Source Inventory grouping)
+  initCartShipments($list);
 
   let cartViewEventPublished = false;
   // Events
