@@ -3,6 +3,7 @@
     "default": {
       "commerce-core-endpoint": "https://srxs-ee.namedia.net/graphql",
       "commerce-endpoint": "https://edge-graph.adobe.io/api/03e397ed-8ca4-4f02-b800-a441549af898/graphql",
+      "commerce-companies-enabled": true,
       "google-api-key": "AIzaSyDuUFvmBap03XOiTZKpxtJHdVaJLy3FQK0",
       "headers": {
         "all": {
