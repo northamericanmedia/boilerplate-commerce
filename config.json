@@ -1,0 +1,71 @@
+{
+  "public": {
+    "default": {
+      "commerce-core-endpoint": "https://srxs-ee.namedia.net/graphql",
+      "commerce-endpoint": "https://edge-graph.adobe.io/api/03e397ed-8ca4-4f02-b800-a441549af898/graphql",
+      "google-api-key": "AIzaSyDuUFvmBap03XOiTZKpxtJHdVaJLy3FQK0",
+      "headers": {
+        "all": {
+          "Store": "srxs_ee"
+        },
+        "cs": {
+          "Magento-Customer-Group": "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c",
+          "Magento-Store-Code": "srxs_main_website_store_ee",
+          "Magento-Store-View-Code": "srxs_ee",
+          "Magento-Website-Code": "srxs_ee",
+          "x-api-key": "search_gql",
+          "Magento-Environment-Id": "e7391505-952f-408e-ab51-07595f1710ea"
+        }
+      },
+      "analytics": {
+        "base-currency-code": "USD",
+        "environment": "Production",
+        "store-id": 1,
+        "store-name": "Main Website Store",
+        "store-url": "https://www.aemshop.net",
+        "store-view-id": 1,
+        "store-view-name": "Default Store View",
+        "website-id": 1,
+        "website-name": "Main Website"
+      },
+      "plugins": {
+        "picker": {
+           "rootCategory": 2
+         }
+      }
+    },
+    "/es/": {
+      "commerce-core-endpoint": "https://srxs-ee.namedia.net/graphql",
+      "commerce-endpoint": "https://edge-graph.adobe.io/api/03e397ed-8ca4-4f02-b800-a441549af898/graphql",
+      "headers": {
+        "all": {
+          "Store": "srxs_ee_es"
+        },
+        "cs": {
+          "Magento-Customer-Group": "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c",
+          "Magento-Store-Code": "srxs_spanish_website_store_ee",
+          "Magento-Store-View-Code": "srxs_ee_es",
+          "Magento-Website-Code": "srxs_ee_es",
+          "x-api-key": "search_gql",
+          "Magento-Environment-Id": "e7391505-952f-408e-ab51-07595f1710ea"
+        }
+      },
+      "analytics": {
+        "base-currency-code": "EUR",
+        "environment": "Production",
+        "store-id": 1,
+        "store-name": "Spanish Website Store",
+        "store-url": "https://www.aemshop.net",
+        "store-view-id": 1,
+        "store-view-name": "Spanish Store View",
+        "website-id": 1,
+        "website-name": "Spanish Website"
+      },
+      "plugins": {
+        "picker": {
+           "rootCategory": 2
+         }
+      }
+    }
+  }
+}
