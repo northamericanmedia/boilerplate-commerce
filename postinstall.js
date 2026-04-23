@@ -41,6 +41,55 @@ fs.readdirSync('node_modules/@dropins', { withFileTypes: true }).forEach((file) 
   fs.copyFileSync(path.resolve(__dirname, 'node_modules', file.from), path.resolve(__dirname, 'scripts', file.to));
 });
 
+// Patch storefront-cart's ESTIMATE_SHIPPING_METHODS_MUTATION to request additional_data,
+// which cart-shipments needs (Adobe ships the mutation inline in chunks/, so the standard
+// overrideGQLOperations build hook can't reach it — it only patches fragments.js files).
+function patchEstimateShippingMutation() {
+  const filePath = path.join(dropinsDir, 'storefront-cart', 'chunks', 'getEstimateShipping.js');
+
+  if (!fs.existsSync(filePath)) {
+    console.warn('⚠️ Could not find getEstimateShipping.js to patch');
+    return;
+  }
+
+  let content = fs.readFileSync(filePath, 'utf8');
+
+  if (content.includes('additional_data {')) {
+    console.info('✅ Estimate shipping mutation already patched');
+    return;
+  }
+
+  const original = `      price_incl_tax {
+        currency
+        value
+      }
+    }
+  }
+`;
+
+  const patched = `      price_incl_tax {
+        currency
+        value
+      }
+      additional_data {
+        key
+        value
+      }
+    }
+  }
+`;
+
+  if (content.includes(original)) {
+    content = content.replace(original, patched);
+    fs.writeFileSync(filePath, content, 'utf8');
+    console.info('✅ Patched ESTIMATE_SHIPPING_METHODS_MUTATION to include additional_data');
+  } else {
+    console.warn('⚠️ Could not find expected pattern in getEstimateShipping.js to patch');
+  }
+}
+
+patchEstimateShippingMutation();
+
 function checkPackageLockForArtifactory() {
   return new Promise((resolve, reject) => {
     fs.readFile('package-lock.json', 'utf8', (err, data) => {
